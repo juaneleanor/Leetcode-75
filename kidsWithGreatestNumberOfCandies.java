@@ -6,15 +6,10 @@ import java.util.List;
 public class kidsWithGreatestNumberOfCandies {
     public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
         List<Boolean> greatestNoOfCandies = new ArrayList<Boolean>();
-        
-        for(int i = 0; i < candies.length; i++){
-            int givenExtraCandies = candies[i] + extraCandies;
+        int maxCandies = Arrays.stream(candies).max().getAsInt();
 
-            if(givenExtraCandies >= Arrays.stream(candies).max().getAsInt()){
-                greatestNoOfCandies.add(i, true);
-            }else{
-                greatestNoOfCandies.add(i, false);
-            }
+        for(int i = 0; i < candies.length; i++){
+            greatestNoOfCandies.add(candies[i] + extraCandies >= maxCandies);
         }
         return greatestNoOfCandies;
     }
